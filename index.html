@@ -47,14 +47,14 @@
     </div>
 
     <!-- Theme Toggle -->
-    <button
+     <button
       onclick="toggleTheme()"
       class="relative w-12 h-6 rounded-full bg-neutral-700 hover:bg-neutral-600 transition focus:outline-none focus:ring-2 focus:ring-primary"
-    >
-      <span
-        id="toggleThumb"
-        class="absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white transition-all duration-300"
-      ></span>
+     >
+     <span
+      id="toggleThumb"
+      class="absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white transition-all duration-300"
+     ></span>
     </button>
   </div>
 </nav>
@@ -182,8 +182,31 @@
 
 <!-- ================= SCRIPT ================= -->
 <script src="script.js"></script>
+<script>
+  const thumb = document.getElementById("toggleThumb");
+  const html = document.documentElement;
+
+  // INITIALIZE toggle position on page load
+  function syncToggleUI() {
+    if (html.classList.contains("dark")) {
+      thumb.style.transform = "translateX(0)";
+    } else {
+      thumb.style.transform = "translateX(24px)";
+    }
+  }
+
+  function toggleTheme() {
+    html.classList.toggle("dark");
+    syncToggleUI();
+  }
+
+  // Run once on load
+  syncToggleUI();
+</script>
+  
 
 </body>
 </html>
+
 
 
