@@ -16,6 +16,7 @@ DocuSense is a clean and responsive web application that analyzes uploaded docum
 
 ## 🔹 Live Demo
 Deployed using GitHub Pages.
+
 Link: https://jobayerdl9.github.io/DocuSense/
 
 ## 🔹 QA Scope
