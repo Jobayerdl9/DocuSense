@@ -2,16 +2,14 @@ function analyzeDocument() {
   const fileInput = document.getElementById("fileInput");
   const resultBox = document.getElementById("result");
 
-  // Reset
   resultBox.classList.add("hidden");
   resultBox.innerHTML = "";
 
-  // Validation
   if (!fileInput.files || fileInput.files.length === 0) {
     resultBox.classList.remove("hidden");
     resultBox.innerHTML = `
       ❌ <span class="font-semibold">No file selected</span><br>
-      Please upload a PDF, image, or text document.
+      Please upload a valid document.
     `;
     return;
   }
@@ -24,41 +22,30 @@ function analyzeDocument() {
   let documentType = "Unknown Document";
   let confidence = "Low";
 
-  /* ========= NAME-BASED HEURISTICS ========= */
+  // Name-based detection
   if (fileName.includes("invoice") || fileName.includes("bill")) {
     documentType = "Invoice";
     confidence = "High";
-  } 
-  else if (fileName.includes("resume") || fileName.includes("cv")) {
+  } else if (fileName.includes("resume") || fileName.includes("cv")) {
     documentType = "Resume";
     confidence = "High";
-  } 
-  else if (fileName.includes("question") || fileName.includes("exam")) {
+  } else if (fileName.includes("question") || fileName.includes("exam")) {
     documentType = "Question Paper";
     confidence = "Medium";
   }
 
-  /* ========= MIME-TYPE FALLBACK ========= */
+  // MIME-type fallback
   else if (fileType === "application/pdf") {
     documentType = "PDF Document";
     confidence = "Medium";
-  } 
-  else if (fileType === "text/plain") {
+  } else if (fileType === "text/plain") {
     documentType = "Text Document";
     confidence = "Medium";
-  } 
-  else if (fileType.startsWith("image/")) {
+  } else if (fileType.startsWith("image/")) {
     documentType = "Image Document";
     confidence = "Low";
   }
 
-  /* ========= UNSUPPORTED FILE ========= */
-  if (!fileType && !fileName) {
-    documentType = "Unsupported File";
-    confidence = "None";
-  }
-
-  /* ========= RESULT ========= */
   resultBox.classList.remove("hidden");
   resultBox.innerHTML = `
     ✅ <span class="font-semibold">Analysis Complete</span><br><br>
@@ -71,3 +58,11 @@ function analyzeDocument() {
   `;
 }
 
+function resetAnalyzer() {
+  const fileInput = document.getElementById("fileInput");
+  const resultBox = document.getElementById("result");
+
+  fileInput.value = "";
+  resultBox.innerHTML = "";
+  resultBox.classList.add("hidden");
+}
