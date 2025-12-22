@@ -172,50 +172,8 @@
 </footer>
 
 <!-- ================= SCRIPT ================= -->
-<script>
-  const thumb = document.getElementById("toggleThumb");
-
-  function toggleTheme() {
-    const html = document.documentElement;
-    html.classList.toggle("dark");
-
-    if (html.classList.contains("dark")) {
-      thumb.style.transform = "translateX(0)";
-    } else {
-      thumb.style.transform = "translateX(24px)";
-    }
-  }
-
-  function analyzeDocument() {
-    const input = document.getElementById("fileInput");
-    const result = document.getElementById("result");
-
-    if (!input.files.length) {
-      result.classList.remove("hidden");
-      result.innerHTML = "❌ Please upload a document.";
-      return;
-    }
-
-    const file = input.files[0];
-    const name = file.name.toLowerCase();
-    let type = "Unknown Document";
-
-    if (name.includes("invoice")) type = "Invoice";
-    else if (name.includes("resume") || name.includes("cv")) type = "Resume";
-    else if (name.includes("question")) type = "Question Paper";
-    else if (file.type === "application/pdf") type = "PDF Document";
-    else if (file.type.includes("image")) type = "Image Document";
-    else if (file.type === "text/plain") type = "Text Document";
-
-    result.classList.remove("hidden");
-    result.innerHTML = `
-      <strong>Analysis Complete</strong><br><br>
-      File: ${file.name}<br>
-      Type: ${type}<br>
-      Size: ${(file.size / 1024).toFixed(2)} KB
-    `;
-  }
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
+
