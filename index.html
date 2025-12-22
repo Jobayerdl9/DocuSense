@@ -1,18 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DocuSense – AI Assisted Document Analyzer</title>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Google Font (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <!-- Tailwind Config -->
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
           colors: {
             primary: '#bef163',
             secondary: '#1f2937'
@@ -22,69 +31,70 @@
     }
   </script>
 
-  <!-- Smooth Scroll -->
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
   </style>
 </head>
 
-<body class="bg-secondary text-white">
+<body class="font-inter bg-secondary text-white dark:bg-secondary transition-colors">
 
-<!-- ================= HERO SECTION ================= -->
-<section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+<!-- ================= NAVBAR ================= -->
+<nav class="fixed top-0 w-full z-50 bg-secondary/80 backdrop-blur border-b border-gray-700">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+    <span class="font-bold text-lg text-primary">DocuSense</span>
+
+    <button
+      onclick="toggleTheme()"
+      class="px-3 py-1 rounded-lg border border-primary text-primary hover:bg-primary hover:text-secondary transition"
+    >
+      🌙 / ☀️
+    </button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20">
   <span class="bg-primary text-secondary px-4 py-1 rounded-full text-sm font-semibold mb-4">
-    AI-Assisted Document Tool
+    AI-Assisted Tool
   </span>
 
   <h1 class="text-4xl md:text-5xl font-bold leading-tight max-w-3xl">
-    Analyze Documents <br class="hidden md:block">
-    <span class="text-primary">Smarter. Faster. Cleaner.</span>
+    Understand Your Documents<br>
+    <span class="text-primary">Instantly & Intelligently</span>
   </h1>
 
   <p class="mt-4 text-gray-300 max-w-xl">
-    DocuSense helps you instantly analyze uploaded documents, detect types,
-    and extract meaningful metadata — all in a clean, minimal interface.
+    DocuSense is a lightweight document analyzer designed for testing,
+    validation, and smart classification.
   </p>
 
-  <div class="mt-8 flex gap-4">
-    <a href="#tool"
-       class="bg-primary text-secondary px-6 py-3 rounded-lg font-semibold hover:scale-105 transition">
-      Try the Tool
+  <div class="mt-8 flex gap-4 flex-wrap justify-center">
+    <a href="#tool" class="bg-primary text-secondary px-6 py-3 rounded-lg font-semibold hover:scale-105 transition">
+      Launch Tool
     </a>
-
-    <a href="#features"
-       class="border border-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-secondary transition">
-      See Features
+    <a href="#features" class="border border-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-secondary transition">
+      Explore Features
     </a>
   </div>
 
-  <!-- Scroll Down -->
-  <a href="#tool" class="mt-12 animate-bounce text-primary text-2xl">
-    ↓
-  </a>
+  <a href="#tool" class="mt-12 animate-bounce text-primary text-2xl">↓</a>
 </section>
 
-<!-- ================= TOOL SECTION ================= -->
-<section id="tool" class="bg-gray-100 text-secondary py-20 px-6">
-  <div class="max-w-md mx-auto bg-white rounded-2xl shadow-xl p-6">
+<!-- ================= TOOL ================= -->
+<section id="tool" class="bg-gray-100 dark:bg-gray-900 text-secondary dark:text-white py-20 px-6">
+  <div class="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
 
-    <h2 class="text-2xl font-bold text-center">
-      📄 DocuSense Analyzer
-    </h2>
-    <p class="text-center text-gray-500 text-sm mt-1">
+    <h2 class="text-2xl font-bold text-center">📄 DocuSense Analyzer</h2>
+    <p class="text-center text-gray-500 dark:text-gray-400 text-sm mt-1">
       Upload a document to analyze
     </p>
 
-    <div class="mt-6">
-      <input
-        type="file"
-        id="fileInput"
-        accept=".pdf,.txt,.jpg,.png"
-        class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-primary"
-      />
-    </div>
+    <input
+      type="file"
+      id="fileInput"
+      accept=".pdf,.txt,.jpg,.png"
+      class="w-full mt-6 border border-gray-300 dark:border-gray-600 rounded-lg p-2 bg-transparent"
+    />
 
     <button
       onclick="analyzeDocument()"
@@ -93,111 +103,108 @@
       Analyze Document
     </button>
 
-    <div
-      id="result"
-      class="hidden mt-5 p-4 bg-gray-50 border border-gray-200 rounded-lg text-sm"
-    ></div>
+    <div id="result"
+         class="hidden mt-5 p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm">
+    </div>
   </div>
 </section>
 
 <!-- ================= FEATURES ================= -->
-<section id="features" class="py-20 px-6 bg-secondary">
+<section id="features" class="py-20 px-6">
   <div class="max-w-5xl mx-auto text-center">
     <h2 class="text-3xl font-bold">
-      Why <span class="text-primary">DocuSense</span>?
+      Built for <span class="text-primary">Quality & Clarity</span>
     </h2>
 
     <div class="mt-12 grid md:grid-cols-3 gap-6">
       <div class="bg-gray-800 p-6 rounded-xl hover:scale-105 transition">
-        <h3 class="font-semibold text-lg">⚡ Fast Analysis</h3>
-        <p class="text-gray-400 text-sm mt-2">
-          Instant document type detection with zero configuration.
-        </p>
+        ⚡ <h3 class="font-semibold mt-2">Instant Feedback</h3>
+        <p class="text-gray-400 text-sm mt-2">No waiting. Immediate document insights.</p>
       </div>
 
       <div class="bg-gray-800 p-6 rounded-xl hover:scale-105 transition">
-        <h3 class="font-semibold text-lg">🎯 QA Friendly</h3>
-        <p class="text-gray-400 text-sm mt-2">
-          Perfect for testing uploads, validations, and edge cases.
-        </p>
+        🧪 <h3 class="font-semibold mt-2">QA-Focused</h3>
+        <p class="text-gray-400 text-sm mt-2">Perfect for upload & validation testing.</p>
       </div>
 
       <div class="bg-gray-800 p-6 rounded-xl hover:scale-105 transition">
-        <h3 class="font-semibold text-lg">📱 Responsive</h3>
-        <p class="text-gray-400 text-sm mt-2">
-          Works smoothly on mobile, tablet, and desktop.
-        </p>
+        🎨 <h3 class="font-semibold mt-2">Minimal UI</h3>
+        <p class="text-gray-400 text-sm mt-2">Clean, modern, and distraction-free.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= AUTHOR ================= -->
-<section class="py-20 px-6 bg-gray-100 text-secondary">
+<section class="py-20 px-6 bg-gray-100 dark:bg-gray-900 text-secondary dark:text-white">
   <div class="max-w-3xl mx-auto text-center">
 
-    <img
-      src="https://avatars.githubusercontent.com/u/1?v=4"
-      alt="Author"
-      class="w-24 h-24 rounded-full mx-auto shadow-md"
-    />
+    <div class="w-24 h-24 mx-auto rounded-full bg-primary flex items-center justify-center text-3xl font-bold text-secondary">
+      JH
+    </div>
 
-    <h3 class="text-2xl font-bold mt-4">
-      Jobayer Hossain
-    </h3>
-
-    <p class="text-gray-600 mt-2 text-sm">
-      Junior QA Engineer • Automation & API Testing Enthusiast
+    <h3 class="text-2xl font-bold mt-4">Jobayer Hossain</h3>
+    <p class="text-gray-600 dark:text-gray-400 text-sm">
+      Junior QA Engineer • Manual • API • Automation
     </p>
 
-    <p class="mt-4 text-gray-700">
-      Built DocuSense as a practical, testable, and recruiter-ready web project
-      to demonstrate real-world QA thinking and frontend skills.
+    <p class="mt-4 text-gray-700 dark:text-gray-300">
+      This project was built to demonstrate real-world QA thinking,
+      frontend skills, and clean deployment practices.
     </p>
+
+    <a
+      href="https://github.com/jobayerhossain"
+      target="_blank"
+      class="inline-block mt-6 bg-secondary dark:bg-primary text-white dark:text-secondary px-6 py-2 rounded-lg hover:opacity-90 transition"
+    >
+      🔗 Visit GitHub Profile
+    </a>
+
   </div>
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer class="bg-secondary text-gray-400 text-center py-6 text-sm">
-  © 2025 DocuSense • Built with ❤️ by Jobayer Hossain
+<footer class="text-center py-6 text-sm text-gray-400">
+  © 2025 DocuSense • Built by Jobayer Hossain
 </footer>
 
 <!-- ================= SCRIPT ================= -->
 <script>
   function analyzeDocument() {
-    const fileInput = document.getElementById("fileInput");
+    const input = document.getElementById("fileInput");
     const result = document.getElementById("result");
 
-    if (fileInput.files.length === 0) {
+    if (!input.files.length) {
       result.classList.remove("hidden");
       result.innerHTML = "❌ Please upload a document.";
       return;
     }
 
-    const file = fileInput.files[0];
+    const file = input.files[0];
     const name = file.name.toLowerCase();
-    const type = file.type;
+    let type = "Unknown Document";
 
-    let docType = "Unknown Document";
-
-    if (name.includes("invoice")) docType = "Invoice";
-    else if (name.includes("resume") || name.includes("cv")) docType = "Resume";
-    else if (name.includes("question")) docType = "Question Paper";
-    else if (type === "application/pdf") docType = "PDF Document";
-    else if (type.includes("image")) docType = "Image Document";
-    else if (type === "text/plain") docType = "Text Document";
+    if (name.includes("invoice")) type = "Invoice";
+    else if (name.includes("resume") || name.includes("cv")) type = "Resume";
+    else if (name.includes("question")) type = "Question Paper";
+    else if (file.type === "application/pdf") type = "PDF Document";
+    else if (file.type.includes("image")) type = "Image Document";
+    else if (file.type === "text/plain") type = "Text Document";
 
     result.classList.remove("hidden");
     result.innerHTML = `
       ✅ <b>Analysis Complete</b><br><br>
       📄 <b>File:</b> ${file.name}<br>
-      📁 <b>Type:</b> ${docType}<br>
+      📁 <b>Type:</b> ${type}<br>
       📦 <b>Size:</b> ${(file.size / 1024).toFixed(2)} KB
     `;
+  }
+
+  function toggleTheme() {
+    document.documentElement.classList.toggle("dark");
   }
 </script>
 
 </body>
 </html>
-
-
