@@ -1,48 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DocuSense | Document Analyzer</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DocuSense – AI Assisted Document Analyzer</title>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-100 min-h-screen flex items-center justify-center px-4">
-    <div class="bg-white w-full max-w-md rounded-xl shadow-lg p-6">
-      <h1 class="text-2xl font-bold text-center text-gray-800">📄 DocuSense</h1>
-      <p class="text-center text-gray-500 text-sm mt-1">
-        AI-Assisted Document Analyzer
-      </p>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-      <!-- Upload Section -->
-      <div class="mt-6">
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-          Upload Document
-        </label>
-        <input
-          type="file"
-          id="fileInput"
-          accept=".pdf,.txt,.jpg,.png"
-          class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#bef163',
+            secondary: '#1f2937'
+          }
+        }
+      }
+    }
+  </script>
 
-      <!-- Button -->
-      <button
-        onclick="analyzeDocument()"
-        class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition"
-      >
-        Analyze Document
-      </button>
+  <!-- Smooth Scroll -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
 
-      <!-- Result Box -->
-      <div
-        id="result"
-        class="hidden mt-5 p-4 bg-gray-50 border border-gray-200 rounded-lg text-sm"
-      ></div>
+<body class="bg-secondary text-white">
+
+<!-- ================= HERO SECTION ================= -->
+<section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+  <span class="bg-primary text-secondary px-4 py-1 rounded-full text-sm font-semibold mb-4">
+    AI-Assisted Document Tool
+  </span>
+
+  <h1 class="text-4xl md:text-5xl font-bold leading-tight max-w-3xl">
+    Analyze Documents <br class="hidden md:block">
+    <span class="text-primary">Smarter. Faster. Cleaner.</span>
+  </h1>
+
+  <p class="mt-4 text-gray-300 max-w-xl">
+    DocuSense helps you instantly analyze uploaded documents, detect types,
+    and extract meaningful metadata — all in a clean, minimal interface.
+  </p>
+
+  <div class="mt-8 flex gap-4">
+    <a href="#tool"
+       class="bg-primary text-secondary px-6 py-3 rounded-lg font-semibold hover:scale-105 transition">
+      Try the Tool
+    </a>
+
+    <a href="#features"
+       class="border border-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-secondary transition">
+      See Features
+    </a>
+  </div>
+
+  <!-- Scroll Down -->
+  <a href="#tool" class="mt-12 animate-bounce text-primary text-2xl">
+    ↓
+  </a>
+</section>
+
+<!-- ================= TOOL SECTION ================= -->
+<section id="tool" class="bg-gray-100 text-secondary py-20 px-6">
+  <div class="max-w-md mx-auto bg-white rounded-2xl shadow-xl p-6">
+
+    <h2 class="text-2xl font-bold text-center">
+      📄 DocuSense Analyzer
+    </h2>
+    <p class="text-center text-gray-500 text-sm mt-1">
+      Upload a document to analyze
+    </p>
+
+    <div class="mt-6">
+      <input
+        type="file"
+        id="fileInput"
+        accept=".pdf,.txt,.jpg,.png"
+        class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-primary"
+      />
     </div>
 
-    <script src="script.js"></script>
-  </body>
+    <button
+      onclick="analyzeDocument()"
+      class="w-full mt-4 bg-primary text-secondary font-semibold py-2 rounded-lg hover:opacity-90 transition"
+    >
+      Analyze Document
+    </button>
+
+    <div
+      id="result"
+      class="hidden mt-5 p-4 bg-gray-50 border border-gray-200 rounded-lg text-sm"
+    ></div>
+  </div>
+</section>
+
+<!-- ================= FEATURES ================= -->
+<section id="features" class="py-20 px-6 bg-secondary">
+  <div class="max-w-5xl mx-auto text-center">
+    <h2 class="text-3xl font-bold">
+      Why <span class="text-primary">DocuSense</span>?
+    </h2>
+
+    <div class="mt-12 grid md:grid-cols-3 gap-6">
+      <div class="bg-gray-800 p-6 rounded-xl hover:scale-105 transition">
+        <h3 class="font-semibold text-lg">⚡ Fast Analysis</h3>
+        <p class="text-gray-400 text-sm mt-2">
+          Instant document type detection with zero configuration.
+        </p>
+      </div>
+
+      <div class="bg-gray-800 p-6 rounded-xl hover:scale-105 transition">
+        <h3 class="font-semibold text-lg">🎯 QA Friendly</h3>
+        <p class="text-gray-400 text-sm mt-2">
+          Perfect for testing uploads, validations, and edge cases.
+        </p>
+      </div>
+
+      <div class="bg-gray-800 p-6 rounded-xl hover:scale-105 transition">
+        <h3 class="font-semibold text-lg">📱 Responsive</h3>
+        <p class="text-gray-400 text-sm mt-2">
+          Works smoothly on mobile, tablet, and desktop.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AUTHOR ================= -->
+<section class="py-20 px-6 bg-gray-100 text-secondary">
+  <div class="max-w-3xl mx-auto text-center">
+
+    <img
+      src="https://avatars.githubusercontent.com/u/1?v=4"
+      alt="Author"
+      class="w-24 h-24 rounded-full mx-auto shadow-md"
+    />
+
+    <h3 class="text-2xl font-bold mt-4">
+      Jobayer Hossain
+    </h3>
+
+    <p class="text-gray-600 mt-2 text-sm">
+      Junior QA Engineer • Automation & API Testing Enthusiast
+    </p>
+
+    <p class="mt-4 text-gray-700">
+      Built DocuSense as a practical, testable, and recruiter-ready web project
+      to demonstrate real-world QA thinking and frontend skills.
+    </p>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-secondary text-gray-400 text-center py-6 text-sm">
+  © 2025 DocuSense • Built with ❤️ by Jobayer Hossain
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+  function analyzeDocument() {
+    const fileInput = document.getElementById("fileInput");
+    const result = document.getElementById("result");
+
+    if (fileInput.files.length === 0) {
+      result.classList.remove("hidden");
+      result.innerHTML = "❌ Please upload a document.";
+      return;
+    }
+
+    const file = fileInput.files[0];
+    const name = file.name.toLowerCase();
+    const type = file.type;
+
+    let docType = "Unknown Document";
+
+    if (name.includes("invoice")) docType = "Invoice";
+    else if (name.includes("resume") || name.includes("cv")) docType = "Resume";
+    else if (name.includes("question")) docType = "Question Paper";
+    else if (type === "application/pdf") docType = "PDF Document";
+    else if (type.includes("image")) docType = "Image Document";
+    else if (type === "text/plain") docType = "Text Document";
+
+    result.classList.remove("hidden");
+    result.innerHTML = `
+      ✅ <b>Analysis Complete</b><br><br>
+      📄 <b>File:</b> ${file.name}<br>
+      📁 <b>Type:</b> ${docType}<br>
+      📦 <b>Size:</b> ${(file.size / 1024).toFixed(2)} KB
+    `;
+  }
+</script>
+
+</body>
 </html>
+
+
